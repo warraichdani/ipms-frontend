@@ -1,13 +1,18 @@
 // src/layouts/AuthLayout.tsx
 import { Outlet } from "react-router-dom";
 import { Card } from "flowbite-react";
+import AuthHeader from "../components/AuthHeader";
 
 export default function AuthLayout() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-brand-50">
-      <Card className="w-full max-w-md shadow-lg">
+    
+    <div className="min-h-screen flex flex-col">
+      <AuthHeader />
+      <main className="flex-1 flex justify-center items-center p-4"> 
+        <Card className="w-full max-w-md shadow-lg">
         <Outlet />
       </Card>
+      </main>
     </div>
   );
 }

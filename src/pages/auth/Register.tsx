@@ -35,7 +35,7 @@ export default function Register() {
             onSubmit={(values, { setSubmitting }) => {
                 registerMutation.mutate(values, {
                     onSettled: () => {
-                        setSubmitting(false); // ✅ always reset after success or error
+                        setSubmitting(false);
                     },
                 });
             }}
