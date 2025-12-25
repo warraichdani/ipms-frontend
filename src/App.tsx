@@ -7,6 +7,7 @@ import Register from "./pages/auth/Register";
 import Dashboard from "./dashboard/Dashboard";
 import ForgotPassword from './pages/auth/ForgotPassword';
 import EmailConfirmation from './pages/auth/EmailConfirmation';
+import InvestmentsListPage from './pages/investments/InvestmentsListPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/investments" element={<InvestmentsListPage />} />
           </Route>
         </Route>
       </Routes>
