@@ -5,11 +5,18 @@ import type { InvestmentDetailDto } from "../../../models/investment";
 type Props = {
   investment: InvestmentDetailDto;
   onAddTransaction: () => void;
+  onEditInvestment: () => void;
+  onDeleteInvestment: () => void;
 };
 
-export default function InvestmentInfoCard({ investment, onAddTransaction }: Props) {
+export default function InvestmentInfoCard({
+  investment,
+  onAddTransaction,
+  onEditInvestment,
+  onDeleteInvestment,
+}: Props) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col justify-between">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-brand-700">{investment.investmentName}</h2>
@@ -50,15 +57,28 @@ export default function InvestmentInfoCard({ investment, onAddTransaction }: Pro
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="flex justify-end">
-          <Button
-            className="bg-brand-600 hover:bg-brand-700 text-white"
-            onClick={onAddTransaction}
-          >
-            + Add transaction
-          </Button>
-        </div>
+      {/* Action buttons at bottom, center aligned */}
+      <div className="flex justify-center gap-4 mt-6">
+        <Button
+          className="bg-brand-600 hover:bg-brand-700 text-white"
+          onClick={onAddTransaction}
+        >
+          + Add Transaction
+        </Button>
+        <Button
+          color="gray"
+          onClick={onEditInvestment}
+        >
+          ✏️ Edit Investment
+        </Button>
+        <Button
+          color="failure"
+          onClick={onDeleteInvestment}
+        >
+          🗑 Delete Investment
+        </Button>
       </div>
     </div>
   );
