@@ -263,7 +263,7 @@ export default function InvestmentsListPage() {
               <TableRow
                 key={i.investmentId}
                 className="cursor-pointer hover:bg-gray-50"
-                onClick={() => navigate(`/investments/${i.investmentId}`)}
+                onClick={() => navigate(`/investment/${i.investmentId}`)}
               >
                 <TableCell onClick={(e) => e.stopPropagation()}>
                   <input

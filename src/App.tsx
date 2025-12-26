@@ -8,6 +8,7 @@ import Dashboard from "./dashboard/Dashboard";
 import ForgotPassword from './pages/auth/ForgotPassword';
 import EmailConfirmation from './pages/auth/EmailConfirmation';
 import InvestmentsListPage from './pages/investments/InvestmentsListPage';
+import InvestmentDetailPage from './pages/investments/InvestmentDetailPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/investments" element={<InvestmentsListPage />} />
+            <Route path="/investment/:id" element={<InvestmentDetailPage />} />
           </Route>
         </Route>
       </Routes>
