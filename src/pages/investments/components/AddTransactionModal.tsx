@@ -32,6 +32,8 @@ export default function AddTransactionModal({ isOpen, onClose, investment }: Pro
             qc.invalidateQueries({ queryKey: ["investment-transactions", vars.investmentId] });
             qc.invalidateQueries({ queryKey: ["investment-detail", vars.investmentId] });
             qc.invalidateQueries({ queryKey: ["investment-performance", vars.investmentId] });
+
+            qc.invalidateQueries({ queryKey: ["all-transactions"] });
             onClose();
         },
         onError: () => toast.error("Failed to save buy transaction"),
@@ -53,6 +55,8 @@ export default function AddTransactionModal({ isOpen, onClose, investment }: Pro
             qc.invalidateQueries({ queryKey: ["investment-transactions", vars.investmentId] });
             qc.invalidateQueries({ queryKey: ["investment-detail", vars.investmentId] });
             qc.invalidateQueries({ queryKey: ["investment-performance", vars.investmentId] });
+
+            qc.invalidateQueries({ queryKey: ["all-transactions"] });
             onClose();
         },
         onError: () => toast.error("Failed to save sell transaction"),
@@ -73,6 +77,8 @@ export default function AddTransactionModal({ isOpen, onClose, investment }: Pro
             qc.invalidateQueries({ queryKey: ["investment-transactions", vars.investmentId] });
             qc.invalidateQueries({ queryKey: ["investment-detail", vars.investmentId] });
             qc.invalidateQueries({ queryKey: ["investment-performance", vars.investmentId] });
+
+            qc.invalidateQueries({ queryKey: ["all-transactions"] });
             onClose();
         },
         onError: () => toast.error("Failed to save price update"),

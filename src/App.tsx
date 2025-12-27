@@ -4,7 +4,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import MainLayout from './layouts/MainLayout';
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-import Dashboard from "./dashboard/Dashboard";
+import DashboardPage from "./pages/dashboard/DashboardPage";
 import ForgotPassword from './pages/auth/ForgotPassword';
 import EmailConfirmation from './pages/auth/EmailConfirmation';
 import InvestmentsListPage from './pages/investments/InvestmentsListPage';
@@ -23,7 +23,7 @@ function App() {
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<DashboardPage />} />
             <Route path="/investments" element={<InvestmentsListPage />} />
             <Route path="/investment/:id" element={<InvestmentDetailPage />} />
             <Route path="/transactions" element={<TransactionListPage />} />

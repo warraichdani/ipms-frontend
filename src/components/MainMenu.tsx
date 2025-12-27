@@ -1,6 +1,7 @@
 // src/components/MainMenu.tsx
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { Can } from "./Can";
 
 type MenuItem = {
   key: string;
@@ -19,32 +20,19 @@ const menuItems: MenuItem[] = [
 ];
 
 export const MainMenu = () => {
-  const { roles } = useAuth();
-
-  // ✅ Filter menu items by user roles
-  const filteredMenu = menuItems.filter((item) => roles.includes(item.role));
-
   return (
     <nav className="flex items-center gap-6 rtl:flex-row-reverse">
-      {filteredMenu.map((item) => (
-        <NavLink
-          key={item.key}
-          to={item.path}
-          className={({ isActive }) =>
-            `
-            text-sm font-medium transition-colors
-            ${
-              isActive
-                ? "text-brand-600 dark:text-brand-400"
-                : "text-gray-700 dark:text-gray-300"
-            }
-            hover:text-brand-600 dark:hover:text-brand-400
-          `
-          }
-        >
-          {item.key}
-        </NavLink>
-      ))}
+      <Can role="Admin">
+        <NavLink to="/" className="nav-link">Dashboard</NavLink>
+        <NavLink to="/users" className="nav-link">Users</NavLink>
+      </Can>
+
+      <Can role="User">
+        <NavLink to="/" className="nav-link">Dashboard</NavLink>
+        {/* <NavLink to="/reports" className="nav-link">Reports</NavLink> */}
+        <NavLink to="/investments" className="nav-link">Investments</NavLink>
+        <NavLink to="/transactions" className="nav-link">Transactions</NavLink>
+      </Can>
     </nav>
   );
 };
