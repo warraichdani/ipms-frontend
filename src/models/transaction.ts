@@ -19,6 +19,7 @@ export type AllTransactionListFilter = {
   transactionType?: string | null;
   from?: string | null; 
   to?: string | null;
+  investmentName?: string | null;
 };
 
 export type PagedResult<T> = {
