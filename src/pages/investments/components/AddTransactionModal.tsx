@@ -37,6 +37,7 @@ export default function AddTransactionModal({ isOpen, onClose, investment }: Pro
             toast.success("Buy transaction saved");
             qc.invalidateQueries({ queryKey: ["investment-transactions", investment.investmentId] });
             qc.invalidateQueries({ queryKey: ["investment-detail", investment.investmentId] });
+            qc.invalidateQueries({ queryKey: ["investment-performance", investment.investmentId] });
             onClose();
         },
         onError: () => toast.error("Failed to save buy transaction"),
@@ -57,6 +58,7 @@ export default function AddTransactionModal({ isOpen, onClose, investment }: Pro
             toast.success("Sell transaction saved");
             qc.invalidateQueries({ queryKey: ["investment-transactions", investment.investmentId] });
             qc.invalidateQueries({ queryKey: ["investment-detail", investment.investmentId] });
+            qc.invalidateQueries({ queryKey: ["investment-performance", investment.investmentId] });
             onClose();
         },
         onError: () => toast.error("Failed to save sell transaction"),

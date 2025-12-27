@@ -15,6 +15,7 @@ const menuItems: MenuItem[] = [
   { key: "Portfolio", path: "/portfolio", role: "User" },
   { key: "Reports", path: "/reports", role: "User" },
   { key: "Investments", path: "/investments", role: "User" },
+  { key: "Transactions", path: "/transactions", role: "User" },
 ];
 
 export const MainMenu = () => {
