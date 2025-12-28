@@ -39,24 +39,31 @@ export default function UserTable({ height = "h-[400px]", scroll = true }: Props
     }, [data]);
 
     const handleDeactivate = async (userId: string) => {
+        // Optimistically flip state
+        setUsers((prev) =>
+            prev.map((u) =>
+                u.userId === userId ? { ...u, isActive: !u.isActive } : u
+            )
+        );
+
         try {
             await apiClient.put(`/users/${userId}/toggle-active`);
+            toast.success("User status updated");
+        } catch {
+            // Rollback if API fails
             setUsers((prev) =>
                 prev.map((u) =>
                     u.userId === userId ? { ...u, isActive: !u.isActive } : u
                 )
             );
-
-            toast.success("User status updated");
-        } catch {
-            toast.error("Failed to deactivate user");
+            toast.error("Failed to update user status");
         }
     };
 
     const handleDelete = async (userId: string) => {
         if (!confirm("Are you sure you want to delete this user?")) return;
         try {
-            await apiClient.delete(`/users/${userId}/soft-delete`);
+            await apiClient.delete(`/users/${userId}`);
             toast.success("User deleted");
         } catch {
             toast.error("Failed to delete user");
@@ -93,17 +100,16 @@ export default function UserTable({ height = "h-[400px]", scroll = true }: Props
                             </TableRow>
                         </TableHead>
                         <TableBody className="divide-y">
-                            {data?.items.map((u) => (
+                            {users.map((u) => (
                                 <TableRow
                                     key={u.userId}
                                     className="cursor-pointer hover:bg-gray-100"
-                                    onClick={() => setSelectedUser(u)} // ✅ row click opens modal
+                                    onClick={() => setSelectedUser(u)}
                                 >
                                     <TableCell>{u.email}</TableCell>
                                     <TableCell>{u.firstName}</TableCell>
                                     <TableCell>{u.lastName ?? "-"}</TableCell>
                                     <TableCell>
-                                        {/* ✅ Stop propagation so row click doesn’t fire */}
                                         <input
                                             type="checkbox"
                                             checked={u.isActive}
@@ -112,9 +118,8 @@ export default function UserTable({ height = "h-[400px]", scroll = true }: Props
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        {/* ✅ Stop propagation + red delete button */}
                                         <Button
-                                            color="failure" // Flowbite red
+                                            color="failure"
                                             size="xs"
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -126,7 +131,7 @@ export default function UserTable({ height = "h-[400px]", scroll = true }: Props
                                     </TableCell>
                                 </TableRow>
                             ))}
-                            {data?.items.length === 0 && (
+                            {users.length === 0 && (
                                 <TableRow>
                                     <TableCell colSpan={5} className="text-center py-4 text-gray-500">
                                         No users found.
@@ -134,6 +139,7 @@ export default function UserTable({ height = "h-[400px]", scroll = true }: Props
                                 </TableRow>
                             )}
                         </TableBody>
+
                     </Table>
                 )}
             </div>
