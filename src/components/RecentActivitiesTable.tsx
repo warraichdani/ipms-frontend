@@ -28,7 +28,7 @@ export default function RecentActivitiesTable() {
               <TableRow>
                 <TableHeadCell>User ID</TableHeadCell>
                 <TableHeadCell>Action</TableHeadCell>
-                <TableHeadCell className="w-full">Summary</TableHeadCell>
+                <TableHeadCell>Summary</TableHeadCell>
                 <TableHeadCell>Occurred At</TableHeadCell>
               </TableRow>
             </TableHead>

@@ -13,7 +13,7 @@ export function useRecentActivities() {
   return useQuery<RecentActivityDto[]>({
     queryKey: ["recent-activities"],
     queryFn: async () => {
-      const { data } = await apiClient.get<RecentActivityDto[]>("/api/activities/recent");
+      const { data } = await apiClient.get<RecentActivityDto[]>("/activities/recent");
       return data;
     },
   });
