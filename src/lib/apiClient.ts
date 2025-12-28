@@ -107,7 +107,13 @@ apiClient.interceptors.response.use(
       }
     }
 
-    return Promise.reject(error);
+    let message = "Unexpected error occurred";
+
+    if (axios.isAxiosError(error)) {
+      message = error.response?.data?.error ?? message;
+    }
+
+    return Promise.reject({ ...error, userMessage: message });
   }
 );
 
