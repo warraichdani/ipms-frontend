@@ -25,9 +25,21 @@ apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('accessToken');
 
-    // Ensure headers exist
-    config.headers = config.headers ?? {};
-    config.headers['Authorization'] = token ? `Bearer ${token}` : '';
+    const urlPath = config.url?.replace(config.baseURL ?? "", "").toLowerCase();
+
+    // Endpoints to bypass
+    const bypassEndpoints = [
+      "/auth/login",
+      "/users/register",
+      "/auth/refresh",
+      "/auth/confirm-email"
+    ];
+
+    if (token && urlPath && !bypassEndpoints.some((ep) => urlPath.includes(ep))) {
+      // Ensure headers exist
+      config.headers = config.headers ?? {};
+      config.headers['Authorization'] = token ? `Bearer ${token}` : '';
+    }
 
     return config;
   },
@@ -38,6 +50,12 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
+
+    if (!error.response) {
+      // Network error (CORS, server down, wrong URL)
+      return Promise.reject(error);
+    }
+
     const data = error.response?.data as ApiErrorResponse | undefined;
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
 
@@ -63,7 +81,7 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const response = await axios.post('/api/auth/refresh', { refreshToken });
+        const response = await apiClient.post('/auth/refresh', { refreshToken });
 
         const newAccessToken = response.data.token;
         const newRefreshToken = response.data.refreshToken;
