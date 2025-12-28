@@ -37,7 +37,7 @@ npm run dev
 npm run build
 4. This compiles TypeScript and bundles the app into the dist/ folder.
 
-✅ Quick Start
+# ✅ Quick Start
 # Clone repo
 git clone https://github.com/your-org/ipms-frontend.git
 cd ipms-frontend
@@ -49,3 +49,12 @@ npm install
 npm run dev
 
 open http://localhost:5173 in your browser
+
+# Application Usage
+SignUp with the details it will create a user account(portfolio) using this user credential you will be logged in as a portfolio user which can create investments add transactions, update price and will see the performance graph and Gain/loss percentage summary and indvidual investment summary.
+
+To login to the application as admin user please use below email and passwrod to login.
+Email: adminuser@mail.com
+Password: 123456
+
+
