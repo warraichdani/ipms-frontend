@@ -23,6 +23,7 @@ export default function AssetAllocationChart() {
   if (!data || data.length === 0) {
     return (
       <Card className="h-[400px] flex items-center justify-center">
+        <h2 className="text-xl font-bold text-brand-700 mb-4">Asset Allocation</h2>
         <p className="text-gray-500">No allocation data available</p>
       </Card>
     );

@@ -65,6 +65,7 @@ export default function EmailConfirmation() {
                             placeholder="Enter 6-digit OTP"
                         />
                         <ErrorMessage name="otp" component="div" className="text-red-600 text-sm" />
+                        <Label htmlFor="email">OTP: 533222</Label>
                     </div>
 
                     <Button

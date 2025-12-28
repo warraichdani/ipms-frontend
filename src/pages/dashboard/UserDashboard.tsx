@@ -2,9 +2,9 @@
 import PortfolioSummaryCard from "../../components/PortfolioSummaryCard";
 import TransactionTable from "../transactions/components/TransactionTable";
 import { useAllTransactions } from "../../hooks/useAllTransactions";
-import PerformanceChart from "../investments/components/PerformanceChart";
 import AssetAllocationChart from "../../components/AssetAllocationChart";
 import { usePortfolioPerformance } from "../../hooks/usePortfolioPerformance";
+import HighChartsPerformanceChart from "../investments/components/HighChartsPerformanceChart";
 
 
 export default function UserDashboard() {
@@ -39,7 +39,7 @@ export default function UserDashboard() {
       <div className="grid grid-cols-7 gap-6">
          <div className="col-span-3 h-[300px]"><AssetAllocationChart /></div>
         <div className="col-span-4 h-[300px]">
-            <PerformanceChart points={perfData ?? []} isLoading={perfLoading} />
+            <HighChartsPerformanceChart data={perfData ?? []} isLoading={perfLoading} />
         </div>
       </div>
     </div>

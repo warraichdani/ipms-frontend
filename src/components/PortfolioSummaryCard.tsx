@@ -18,6 +18,7 @@ export default function PortfolioSummaryCard() {
   if (!data) {
     return (
       <Card className="col-span-3">
+        <h2 className="text-xl font-bold text-brand-700 mb-4">Portfolio Summary</h2>
         <p className="text-gray-500">No summary available</p>
       </Card>
     );
