@@ -23,6 +23,7 @@ import {
 import { EditInvestmentModal } from "./EditInvestmentModal";
 import apiClient from "../../lib/apiClient";
 import type { InvestmentListItemDto } from "../../hooks/useInvestments";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function InvestmentsListPage() {
   const navigate = useNavigate();
@@ -53,18 +54,19 @@ export default function InvestmentsListPage() {
   const toggleSelect = (id: string, checked: boolean) => {
     setSelectedIds((prev) => (checked ? [...prev, id] : prev.filter((x) => x !== id)));
   };
-
+  const queryClient = useQueryClient();
   const bulkDelete = async () => {
     if (selectedIds.length === 0) {
       toast.info("No investments selected.");
       return;
     }
     try {
-      await apiClient.delete("/investments", { data: { ids: selectedIds } });
+      await apiClient.post("/investments/bulkdelete", {
+        investmentIds: selectedIds
+      });
       toast.success("Selected investments deleted.");
       setSelectedIds([]);
-      // Optionally invalidate the query if not configured globally
-      // queryClient.invalidateQueries({ queryKey: ["investments"] });
+      queryClient.invalidateQueries({ queryKey: ["investments"] });
     } catch {
       toast.error("Delete failed.");
     }

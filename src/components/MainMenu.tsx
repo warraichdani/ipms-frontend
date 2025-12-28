@@ -1,6 +1,5 @@
 // src/components/MainMenu.tsx
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import { Can } from "./Can";
 
 type MenuItem = {
