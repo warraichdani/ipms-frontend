@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { useUsers, type UserDto } from "../hooks/useUsers";
 import apiClient from "../lib/apiClient";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Props = {
     height?: string; // e.g. "h-[400px]"
@@ -60,11 +61,15 @@ export default function UserTable({ height = "h-[400px]", scroll = true }: Props
         }
     };
 
+    const qc = useQueryClient();
     const handleDelete = async (userId: string) => {
         if (!confirm("Are you sure you want to delete this user?")) return;
         try {
-            await apiClient.delete(`/users/${userId}`);
+            await apiClient.delete(`/users/${userId}/soft-delete`);
             toast.success("User deleted");
+
+            // ✅ Trigger refetch
+            qc.invalidateQueries({ queryKey: ["users"] });
         } catch {
             toast.error("Failed to delete user");
         }
@@ -121,6 +126,7 @@ export default function UserTable({ height = "h-[400px]", scroll = true }: Props
                                         <Button
                                             color="failure"
                                             size="xs"
+                                            className="font-semibold"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleDelete(u.userId);
@@ -161,8 +167,14 @@ export default function UserTable({ height = "h-[400px]", scroll = true }: Props
             </div>
 
             {/* User Details Modal (stub for now) */}
-            <Modal show={!!selectedUser} onClose={() => setSelectedUser(null)}>
-                <ModalHeader>User Details</ModalHeader>
+            <Modal
+                show={!!selectedUser}
+                onClose={() => setSelectedUser(null)}
+                dismissible   // ✅ enables click-away + ESC close
+            >
+                <ModalHeader>
+                    User Details
+                </ModalHeader>
                 <ModalBody>
                     <p>Email: {selectedUser?.email}</p>
                     <p>Name: {selectedUser?.firstName} {selectedUser?.lastName}</p>
