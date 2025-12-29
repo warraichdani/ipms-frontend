@@ -1,7 +1,15 @@
 # Invetment Portfolio Managment (React + TypeScript + Vite)
 
 #Running Application
-kindly clone this repository and backend repository on this url(https://github.com/warraichdani/IPMS.Server). Steps to run Backend Repository along with seed data can be found at that repository.
+kindly clone this repository and backend repository on this url(https://github.com/warraichdani/IPMS.Server).
+# Login Credentials
+#Admin User
+Email: adminuser@mail.com
+Password: 123456
+
+#Porfolio User
+Email: user@mail.com
+Password: 123456
 
 Below are steps to run this frontend.
 
