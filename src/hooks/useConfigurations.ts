@@ -22,7 +22,10 @@ export function useConfigurations() {
   });
 }
 
-type Option = { label: string; value: string };
+export type Option = {
+  label: string;
+  value: string;
+};
 
 export function useInvestmentTypeOptions(): Option[] {
   const { data } = useConfigurations();

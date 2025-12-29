@@ -28,7 +28,7 @@ export const MainMenu = () => {
 
       <Can role="User">
         <NavLink to="/" className="nav-link">Dashboard</NavLink>
-        {/* <NavLink to="/reports" className="nav-link">Reports</NavLink> */}
+        <NavLink to="/reports" className="nav-link">Reports</NavLink>
         <NavLink to="/investments" className="nav-link">Investments</NavLink>
         <NavLink to="/transactions" className="nav-link">Transactions</NavLink>
       </Can>
