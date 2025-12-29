@@ -1,4 +1,4 @@
-import { Table, TableHead, TableRow, TableHeadCell, TableBody, TableCell, Spinner } from "flowbite-react";
+import { Table, TableHead, TableRow, TableHeadCell, TableBody, TableCell, Spinner, Pagination } from "flowbite-react";
 import type { AllTransactionListItemDto } from "../../../models/transaction";
 
 type Props = {
@@ -68,18 +68,13 @@ export default function TransactionTable({
 
       {/* ✅ Paging controls (optional) */}
       {!hidePaging && totalPages > 1 && (
-        <div className="flex justify-center mt-4 gap-2 border-t pt-3">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-            <button
-              key={p}
-              onClick={() => onPageChange(p)}
-              className={`px-3 py-1 rounded ${
-                p === page ? "bg-brand-600 text-white" : "bg-gray-200 dark:bg-gray-600"
-              }`}
-            >
-              {p}
-            </button>
-          ))}
+        <div className="flex justify-end mt-4 border-t pt-3">
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       )}
     </div>
