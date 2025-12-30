@@ -1,4 +1,4 @@
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import apiClient from "../lib/apiClient";
 import { useState } from "react";
 
@@ -30,8 +30,8 @@ export interface PerformanceSummaryFilters {
 }
 
 export function usePerformanceSummaryReport(filters: PerformanceSummaryFilters) {
-  const [page, setPage] = useState(filters.page ?? 1);
-  const pageSize = filters.pageSize ?? 30;
+  const [page, setPage] = useState(filters.page);
+  const pageSize = filters.pageSize;
 
   const query = useQuery({
     queryKey: ["performance-summary", filters, page],
@@ -42,13 +42,7 @@ export function usePerformanceSummaryReport(filters: PerformanceSummaryFilters) 
       );
       return data;
     },
-    placeholderData: keepPreviousData,
   });
 
-  return {
-    ...query,
-    page,
-    setPage,
-    pageSize,
-  };
+  return { ...query, page, setPage, pageSize };
 }
