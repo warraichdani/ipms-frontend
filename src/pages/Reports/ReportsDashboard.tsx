@@ -18,7 +18,7 @@ export default function ReportsDashboard() {
 
         {/* Main Content Area */}
         <div className="flex-1 p-6">
-          <ReportContent activeReport={activeReport} />
+          <ReportContent activeReport={activeReport} filters={filters} />
         </div>
       </div>
     </div>

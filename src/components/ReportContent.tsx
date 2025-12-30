@@ -1,7 +1,9 @@
-export default function ReportContent({ activeReport }: { activeReport: string }) {
+import PerformanceSummaryReport from "../pages/Reports/PerformanceSummaryReport";
+
+export default function ReportContent({ activeReport, filters }: { activeReport: string; filters: any }) {
   switch (activeReport) {
     case "PerformanceSummaryReport":
-      return <div>Report coming soon</div>;
+      return <PerformanceSummaryReport filters={filters} />;
     case "InvestmentDistributionReport":
       return <div>Report coming soon</div>;
     case "TransactionHistoryReport":
