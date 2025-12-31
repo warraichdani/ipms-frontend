@@ -21,7 +21,7 @@ export interface PagedResult<T> {
   pageSize: number;
 }
 
-export interface PerformanceSummaryFilters {
+export interface ReportsFiltersRequest {
   from: string;
   to: string;
   investmentTypes?: string[];
@@ -30,7 +30,7 @@ export interface PerformanceSummaryFilters {
   exportAll: boolean;
 }
 
-export function usePerformanceSummaryReport(filters: PerformanceSummaryFilters) {
+export function usePerformanceSummaryReport(filters: ReportsFiltersRequest) {
   const [page, setPage] = useState(filters.page);
   const pageSize = filters.pageSize;
 

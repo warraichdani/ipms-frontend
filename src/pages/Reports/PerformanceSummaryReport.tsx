@@ -1,7 +1,7 @@
 import { Table, TableHead, TableHeadCell, TableBody, TableRow, TableCell, Spinner, Pagination } from "flowbite-react";
-import { usePerformanceSummaryReport, type PerformanceSummaryFilters } from "../../hooks/usePerformanceSummaryReport";
+import { usePerformanceSummaryReport, type ReportsFiltersRequest } from "../../hooks/usePerformanceSummaryReport";
 
-export default function PerformanceSummaryReport({ filters }: { filters: PerformanceSummaryFilters }) {
+export default function PerformanceSummaryReport({ filters }: { filters: ReportsFiltersRequest }) {
   const { data, isLoading, page, setPage, pageSize } = usePerformanceSummaryReport(filters);
 
   const totalPages = Math.max(1, Math.ceil((data?.totalCount ?? 0) / pageSize));

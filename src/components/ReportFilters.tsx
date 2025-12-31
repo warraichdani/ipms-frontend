@@ -1,7 +1,7 @@
 import { Button, TextInput } from "flowbite-react";
 import InvestmentTypeSelector from "./InvestmentTypeSelector";
 import apiClient from "../lib/apiClient";
-import type { PerformanceSummaryFilters } from "../hooks/usePerformanceSummaryReport";
+import type { ReportsFiltersRequest } from "../hooks/usePerformanceSummaryReport";
 import { useState } from "react";
 
 export default function ReportFilters({
@@ -9,8 +9,8 @@ export default function ReportFilters({
   setFilters,
   activeReport,
 }: {
-  filters: PerformanceSummaryFilters;
-  setFilters: (f: PerformanceSummaryFilters) => void;
+  filters: ReportsFiltersRequest;
+  setFilters: (f: ReportsFiltersRequest) => void;
   activeReport: string;
 }) {
   const [fromDate, setFromDate] = useState(filters.from);
