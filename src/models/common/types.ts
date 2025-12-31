@@ -18,3 +18,10 @@ export type AllocationDto = {
   investmentType: string;
   value: number;
 };
+
+export type YoYAllocationRowDto = {
+  year: number;
+  investmentType: string;
+  totalValue: number;
+  allocationPercent: number;
+};

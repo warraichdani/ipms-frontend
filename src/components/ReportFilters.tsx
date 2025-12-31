@@ -4,6 +4,13 @@ import apiClient from "../lib/apiClient";
 import { useState } from "react";
 import type { ReportsFiltersRequest } from "../models/common/types";
 
+type ReportFiltersProps = {
+  filters: ReportsFiltersRequest;
+  setFilters: (f: ReportsFiltersRequest) => void;
+  activeReport: string;
+  onExport?: (format: "csv" | "pdf" | "json") => void; // ✅ optional callback
+};
+
 export default function ReportFilters({
   filters,
   setFilters,
@@ -12,6 +19,7 @@ export default function ReportFilters({
   filters: ReportsFiltersRequest;
   setFilters: (f: ReportsFiltersRequest) => void;
   activeReport: string;
+  onExport?: (format: "csv" | "pdf" | "json") => void;
 }) {
   const [fromDate, setFromDate] = useState(filters.from);
   const [toDate, setToDate] = useState(filters.to);
