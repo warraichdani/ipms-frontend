@@ -12,7 +12,6 @@ export default function InvestmentTypeSelector({
 }: InvestmentTypeSelectorProps) {
   // ✅ Pull investment types from configurations hook
   const investmentTypes = useInvestmentTypeOptions(); 
-  // assume hook returns { investmentTypes: Option[] } where Option = { value: string; label: string }
 
   const toggleType = (id: string) => {
     if (selectedTypes.includes(id)) {

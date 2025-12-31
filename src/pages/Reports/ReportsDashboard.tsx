@@ -3,6 +3,7 @@ import ReportFilters from "../../components/ReportFilters";
 import ReportSelector from "../../components/ReportSelector";
 import ReportContent from "../../components/ReportContent";
 import type { ReportsFiltersRequest } from "../../models/common/types";
+import apiClient from "../../lib/apiClient";
 
 export default function ReportsDashboard() {
     const [filters, setFilters] = useState<ReportsFiltersRequest>({
@@ -15,6 +16,62 @@ export default function ReportsDashboard() {
     });
 
     const [activeReport, setActiveReport] = useState("PerformanceSummaryReport");
+    const validDateRange = filters.from && filters.to && new Date(filters.from) <= new Date(filters.to);
+
+    const handleYoYExport  = async (format: "csv" | "pdf" | "json") => {
+        try {
+          const response = await apiClient.post(
+            `/reports/yoy-allocation/export?format=${format}`,
+            {},
+            { responseType: "blob" }
+          );
+          exportfile(response, format);
+        } catch (err) {
+          console.error("Export failed", err);
+        }
+      };
+
+const handlePerformanceExport  = async (format: "csv" | "pdf" | "json") => {
+    if (!validDateRange) {
+      alert("Please select a valid date range before exporting.");
+      return;
+    }
+    try {
+      const response = await apiClient.post(
+
+        `/reports/performance-summary/export?format=${format}`,
+        {
+          from: filters.from,
+          to: filters.to,
+          investmentTypes: filters.investmentTypes,
+          page: 1,
+          pageSize: 10,
+          exportAll: true,
+        },
+        { responseType: "blob" }
+      );
+      exportfile(response, format);
+    } catch (err) {
+      console.error("Export failed", err);
+    }
+  };
+
+const exportfile =(response: any, format: "csv" | "pdf" | "json") =>
+{
+    const url = window.URL.createObjectURL(response.data);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `performance-summary${new Date().toISOString().slice(0, 10)}.${format}`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+}
+
+  const exportHandler =
+    activeReport === "PerformanceSummaryReport"
+      ? handlePerformanceExport
+      : activeReport === "YearOverYearComparison"
+      ? handleYoYExport
+      : undefined;
 
     return (
         <div className="flex flex-col w-full h-full bg-gray-50">
@@ -24,6 +81,7 @@ export default function ReportsDashboard() {
                     filters={filters}
                     setFilters={setFilters}
                     activeReport={activeReport}
+                    onExport={exportHandler}
                 />
             </div>
 
