@@ -27,6 +27,7 @@ export interface PerformanceSummaryFilters {
   investmentTypes?: string[];
   page: number;
   pageSize: number;
+  exportAll: boolean;
 }
 
 export function usePerformanceSummaryReport(filters: PerformanceSummaryFilters) {
@@ -42,7 +43,9 @@ export function usePerformanceSummaryReport(filters: PerformanceSummaryFilters) 
       );
       return data;
     },
+    enabled: !!filters.from && !!filters.to, // ✅ only runs after Apply sets valid dates
   });
 
   return { ...query, page, setPage, pageSize };
 }
+

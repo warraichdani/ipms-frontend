@@ -11,6 +11,7 @@ export default function ReportsDashboard() {
     investmentTypes: [],
     page: 1,
     pageSize: 30,
+    exportAll: false
   });
 
   const [activeReport, setActiveReport] = useState("PerformanceSummaryReport");
