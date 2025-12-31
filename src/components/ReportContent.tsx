@@ -1,3 +1,4 @@
+import MonthlyPerformanceTrendReport from "../pages/Reports/MonthlyPerformanceTrendReport";
 import PerformanceSummaryReport from "../pages/Reports/PerformanceSummaryReport";
 
 export default function ReportContent({ activeReport, filters }: { activeReport: string; filters: any }) {
@@ -9,7 +10,7 @@ export default function ReportContent({ activeReport, filters }: { activeReport:
     case "TransactionHistoryReport":
       return <div>Report coming soon</div>;
     case "MonthlyPerformanceTrend":
-      return <div>Report coming soon</div>;
+      return <MonthlyPerformanceTrendReport filters={filters} />;
     case "YearOverYearComparison":
       return <div>Report coming soon</div>;
     case "TopPerformingInvestments":
