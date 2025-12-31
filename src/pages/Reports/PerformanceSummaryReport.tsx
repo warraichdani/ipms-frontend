@@ -1,5 +1,6 @@
 import { Table, TableHead, TableHeadCell, TableBody, TableRow, TableCell, Spinner, Pagination } from "flowbite-react";
-import { usePerformanceSummaryReport, type ReportsFiltersRequest } from "../../hooks/usePerformanceSummaryReport";
+import { usePerformanceSummaryReport } from "../../hooks/usePerformanceSummaryReport";
+import type { ReportsFiltersRequest } from "../../models/common/types";
 
 export default function PerformanceSummaryReport({ filters }: { filters: ReportsFiltersRequest }) {
   const { data, isLoading, page, setPage, pageSize } = usePerformanceSummaryReport(filters);

@@ -1,8 +1,8 @@
 import { Button, TextInput } from "flowbite-react";
 import InvestmentTypeSelector from "./InvestmentTypeSelector";
 import apiClient from "../lib/apiClient";
-import type { ReportsFiltersRequest } from "../hooks/usePerformanceSummaryReport";
 import { useState } from "react";
+import type { ReportsFiltersRequest } from "../models/common/types";
 
 export default function ReportFilters({
   filters,

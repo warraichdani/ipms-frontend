@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { ReportsFiltersRequest } from "../../hooks/usePerformanceSummaryReport";
 import ReportFilters from "../../components/ReportFilters";
 import ReportSelector from "../../components/ReportSelector";
 import ReportContent from "../../components/ReportContent";
+import type { ReportsFiltersRequest } from "../../models/common/types";
 
 export default function ReportsDashboard() {
     const [filters, setFilters] = useState<ReportsFiltersRequest>({

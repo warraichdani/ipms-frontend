@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../lib/apiClient";
 import { useState } from "react";
+import type { PagedResult, ReportsFiltersRequest } from "../models/common/types";
 
 export interface DailyPerformanceSummaryDto {
   date: string; // ISO string from backend
@@ -12,22 +13,6 @@ export interface DailyPerformanceSummaryDto {
   bestPerformerGainPercent?: number;
   worstPerformerName?: string;
   worstPerformerGainPercent?: number;
-}
-
-export interface PagedResult<T> {
-  items: T[];
-  totalCount: number;
-  page: number;
-  pageSize: number;
-}
-
-export interface ReportsFiltersRequest {
-  from: string;
-  to: string;
-  investmentTypes?: string[];
-  page: number;
-  pageSize: number;
-  exportAll: boolean;
 }
 
 export function usePerformanceSummaryReport(filters: ReportsFiltersRequest) {
