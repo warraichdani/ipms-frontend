@@ -1,3 +1,4 @@
+import InvestmentDistributionReport from "../pages/Reports/InvestmentDistributionReport";
 import MonthlyPerformanceTrendReport from "../pages/Reports/MonthlyPerformanceTrendReport";
 import PerformanceSummaryReport from "../pages/Reports/PerformanceSummaryReport";
 
@@ -6,7 +7,7 @@ export default function ReportContent({ activeReport, filters }: { activeReport:
     case "PerformanceSummaryReport":
       return <PerformanceSummaryReport filters={filters} />;
     case "InvestmentDistributionReport":
-      return <div>Report coming soon</div>;
+      return <InvestmentDistributionReport filters={filters}/>;
     case "TransactionHistoryReport":
       return <div>Report coming soon</div>;
     case "MonthlyPerformanceTrend":

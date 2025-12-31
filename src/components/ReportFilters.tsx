@@ -78,9 +78,10 @@ export default function ReportFilters({
 
         <TextInput type="date" value={fromDate} max={new Date().toISOString().split("T")[0]} onChange={(e) => setFromDate(e.target.value)} />
         <TextInput type="date" value={toDate} max={new Date().toISOString().split("T")[0]} onChange={(e) => setToDate(e.target.value)} />
-
-        <InvestmentTypeSelector selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} />
-
+        {
+          activeReport === "InvestmentDistributionReport" || activeReport === "MonthlyPerformanceTrend" ? null : <InvestmentTypeSelector selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} />
+        }
+        
         <Button className="bg-brand-600 hover:bg-brand-700 text-white" disabled={!validDateRange} onClick={handleApply}>
           Load Report
         </Button>
@@ -90,21 +91,21 @@ export default function ReportFilters({
 
         <Button
           className="border border-brand-600 text-brand-600 hover:bg-brand-50 hover:text-brand-700"
-          disabled={activeReport === "MonthlyPerformanceTrend"}
+          disabled={activeReport === "MonthlyPerformanceTrend" || activeReport === "InvestmentDistributionReport"}
           onClick={() => handleExport("pdf")}
         >
           Export PDF
         </Button>
         <Button
           className="border border-brand-600 text-brand-600 hover:bg-brand-50 hover:text-brand-700"
-          disabled={activeReport === "MonthlyPerformanceTrend"}
+          disabled={activeReport === "MonthlyPerformanceTrend" || activeReport === "InvestmentDistributionReport"}
           onClick={() => handleExport("csv")}
         >
           Export CSV
         </Button>
         <Button
           className="border border-brand-600 text-brand-600 hover:bg-brand-50 hover:text-brand-700"
-          disabled={activeReport === "MonthlyPerformanceTrend"}
+          disabled={activeReport === "MonthlyPerformanceTrend" || activeReport === "InvestmentDistributionReport"}
           onClick={() => handleExport("json")}
         >
           Export JSON
