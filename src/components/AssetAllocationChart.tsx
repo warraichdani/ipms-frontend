@@ -2,15 +2,18 @@
 import { Card, Spinner } from "flowbite-react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { useAllocation } from "../hooks/useAllocation";
 import { useInvestmentTypeOptions } from "../hooks/useConfigurations";
+import type { AllocationDto } from "../models/common/types";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function AssetAllocationChart() {
-  const { data, isLoading } = useAllocation();
-  const investmentTypes = useInvestmentTypeOptions(); 
-  // investmentTypes: [{ value: "Equity", label: "Equity" }, ...]
+type Props = {
+  assetData: AllocationDto[] | undefined;
+  isAssetLoading: boolean;
+};
+
+export default function AssetAllocationChart({ assetData: data, isAssetLoading: isLoading }: Props) {
+  const investmentTypes = useInvestmentTypeOptions();
 
   if (isLoading) {
     return (

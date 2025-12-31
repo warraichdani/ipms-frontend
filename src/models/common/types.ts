@@ -13,3 +13,8 @@ export interface ReportsFiltersRequest {
   pageSize: number;
   exportAll: boolean;
 }
+
+export type AllocationDto = {
+  investmentType: string;
+  value: number;
+};

@@ -5,6 +5,7 @@ import { useAllTransactions } from "../../hooks/useAllTransactions";
 import AssetAllocationChart from "../../components/AssetAllocationChart";
 import { usePortfolioPerformance } from "../../hooks/usePortfolioPerformance";
 import HighChartsPerformanceChart from "../investments/components/HighChartsPerformanceChart";
+import { useAllocation } from "../../hooks/useAllocation";
 
 
 export default function UserDashboard() {
@@ -13,7 +14,10 @@ export default function UserDashboard() {
     pageSize: 10,
   });
 
+  
   const { data: perfData, isLoading: perfLoading } = usePortfolioPerformance();
+  const { data: assetData, isLoading: isAssetLoading } = useAllocation();
+
   return (
     <div className="container mx-auto px-6 py-6">
       <div className="grid grid-cols-7 gap-6">
@@ -37,7 +41,7 @@ export default function UserDashboard() {
         </div>
       </div>
       <div className="grid grid-cols-7 gap-6">
-         <div className="col-span-3 h-[300px]"><AssetAllocationChart /></div>
+         <div className="col-span-3 h-[300px]"><AssetAllocationChart assetData={assetData} isAssetLoading={isAssetLoading} /></div>
         <div className="col-span-4 h-[300px]">
             <HighChartsPerformanceChart data={perfData ?? []} isLoading={perfLoading} />
         </div>
