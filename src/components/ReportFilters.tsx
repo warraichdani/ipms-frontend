@@ -70,20 +70,24 @@ export default function ReportFilters({
   };
 
   return (
-    <div className="flex items-center justify-end gap-4 border-b pb-3 mb-4">
-      <TextInput type="date" value={fromDate} max={new Date().toISOString().split("T")[0]} onChange={(e) => setFromDate(e.target.value)} />
-      <TextInput type="date" value={toDate} max={new Date().toISOString().split("T")[0]} onChange={(e) => setToDate(e.target.value)} />
-
-      <InvestmentTypeSelector selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} />
-
-      <Button className="bg-brand-600 hover:bg-brand-700 text-white" disabled={!validDateRange} onClick={handleApply}>
-        Load Report
-      </Button>
-      <Button className="bg-black hover:bg-gray-900 text-white" onClick={resetFilters}>
-        Reset
-      </Button>
+    <div className="flex items-center justify-between gap-4">
+      <div className="flex gap-4 items-center">
+      </div>
 
       <div className="flex gap-2">
+
+        <TextInput type="date" value={fromDate} max={new Date().toISOString().split("T")[0]} onChange={(e) => setFromDate(e.target.value)} />
+        <TextInput type="date" value={toDate} max={new Date().toISOString().split("T")[0]} onChange={(e) => setToDate(e.target.value)} />
+
+        <InvestmentTypeSelector selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} />
+
+        <Button className="bg-brand-600 hover:bg-brand-700 text-white" disabled={!validDateRange} onClick={handleApply}>
+          Load Report
+        </Button>
+        <Button className="bg-black hover:bg-gray-900 text-white" onClick={resetFilters}>
+          Reset
+        </Button>
+
         <Button
           className="border border-brand-600 text-brand-600 hover:bg-brand-50 hover:text-brand-700"
           disabled={activeReport === "MonthlyPerformanceTrend"}

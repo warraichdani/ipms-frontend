@@ -11,6 +11,7 @@ import InvestmentsListPage from './pages/investments/InvestmentsListPage';
 import InvestmentDetailPage from './pages/investments/InvestmentDetailPage';
 import TransactionListPage from './pages/transactions/TransactinListPage';
 import ReportsDashboard from './pages/Reports/ReportsDashboard';
+import ReportsLayout from './layouts/ReportsLayout';
 
 function App() {
   return (
@@ -28,10 +29,15 @@ function App() {
             <Route path="/investments" element={<InvestmentsListPage />} />
             <Route path="/investment/:id" element={<InvestmentDetailPage />} />
             <Route path="/transactions" element={<TransactionListPage />} />
+          </Route>
+        </Route>
+       <Route element={<ProtectedRoute />}>
+          <Route element={<ReportsLayout />}>
             <Route path="/reports" element={<ReportsDashboard />} />
           </Route>
         </Route>
       </Routes>
+
     </BrowserRouter>
   );
 }
