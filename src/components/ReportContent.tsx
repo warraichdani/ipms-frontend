@@ -1,6 +1,7 @@
 import InvestmentDistributionReport from "../pages/Reports/InvestmentDistributionReport";
 import MonthlyPerformanceTrendReport from "../pages/Reports/MonthlyPerformanceTrendReport";
 import PerformanceSummaryReport from "../pages/Reports/PerformanceSummaryReport";
+import TopPerformingInvestmentsReport from "../pages/Reports/TopPerformingInvestmentsReport";
 import YearOverYearComparisonReport from "../pages/Reports/YearOverYearComparisonReport";
 
 export default function ReportContent({ activeReport, filters }: { activeReport: string; filters: any }) {
@@ -16,7 +17,7 @@ export default function ReportContent({ activeReport, filters }: { activeReport:
     case "YearOverYearComparison":
       return <YearOverYearComparisonReport />;
     case "TopPerformingInvestments":
-      return <div>Report coming soon</div>;
+      return <TopPerformingInvestmentsReport filters={filters} />;
     default:
       return <div>Select a report</div>;
   }

@@ -56,6 +56,16 @@ const handlePerformanceExport  = async (format: "csv" | "pdf" | "json") => {
     }
   };
 
+  const handleTopPerformingExport = async (format: "csv" | "pdf" | "json") => {
+    const response = await apiClient.post(
+      `/reports/top-performing-investments/export?format=${format}`,
+      filters,
+      { responseType: "blob" }
+    );
+    exportfile(response, format);
+  };
+
+
 const exportfile =(response: any, format: "csv" | "pdf" | "json") =>
 {
     const url = window.URL.createObjectURL(response.data);
@@ -71,6 +81,8 @@ const exportfile =(response: any, format: "csv" | "pdf" | "json") =>
       ? handlePerformanceExport
       : activeReport === "YearOverYearComparison"
       ? handleYoYExport
+      : activeReport === "TopPerformingInvestments"
+      ? handleTopPerformingExport
       : undefined;
 
     return (
