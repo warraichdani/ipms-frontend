@@ -108,7 +108,7 @@ const exportfile =(response: any, format: "csv" | "pdf" | "json") =>
 
             <div className="flex flex-1 overflow-hidden">
                 {/* Left-side Report Selector */}
-                <div className="w-64 border-r border-gray-300 bg-white">
+                <div className="w-64 p-2 border-r border-gray-300 bg-white">
                     <ReportSelector
                         activeReport={activeReport}
                         setActiveReport={setActiveReport}

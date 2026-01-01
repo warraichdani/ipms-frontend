@@ -11,7 +11,8 @@ import {
     TextInput,
     Modal,
     ModalBody,
-    ModalHeader
+    ModalHeader,
+    Pagination
 } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useUsers, type UserDto } from "../hooks/useUsers";
@@ -158,19 +159,14 @@ export default function UserTable({ height = "h-[300px]", scroll = true }: Props
 
       {/* Pagination (only if > 1 page) */}
       {totalPages > 1 && (
-        <div className="flex justify-center gap-2 p-3 border-t">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-            <button
-              key={p}
-              onClick={() => setPage(p)}
-              className={`px-3 py-1 rounded ${
-                p === page ? "bg-brand-600 text-white" : "bg-gray-200 dark:bg-gray-600"
-              }`}
-            >
-              {p}
-            </button>
-          ))}
-        </div>
+
+        <div className="flex justify-end mt-4 p-2">
+                        <Pagination
+                          currentPage={page}
+                          totalPages={totalPages}
+                          onPageChange={(p) => setPage(p)}
+                        />
+                      </div>
       )}
 
       {/* User Details Modal */}

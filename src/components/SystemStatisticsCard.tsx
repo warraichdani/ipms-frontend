@@ -7,7 +7,7 @@ export default function SystemStatisticsCard() {
 
   if (isLoading) {
     return (
-      <Card className="h-[250px] flex items-center justify-center">
+      <Card className="h-[350px] flex items-center justify-center">
         <Spinner size="lg" />
       </Card>
     );
@@ -15,14 +15,14 @@ export default function SystemStatisticsCard() {
 
   if (!data) {
     return (
-      <Card className="h-[250px] flex items-center justify-center">
+      <Card className="h-[350px] flex items-center justify-center">
         <p className="text-gray-500">No statistics available</p>
       </Card>
     );
   }
 
   return (
-    <Card className="h-[250px] rounded-lg shadow-md">
+    <Card className="h-[400px] rounded-lg shadow-md">
       <h2 className="text-xl font-bold text-brand-700 mb-4">System Statistics</h2>
       <div className="grid grid-cols-2 gap-4">
         <div>
