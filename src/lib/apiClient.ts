@@ -83,10 +83,10 @@ apiClient.interceptors.response.use(
       try {
         const response = await apiClient.post('/auth/refresh', { refreshToken });
 
-        const newAccessToken = response.data.token;
+        const newAccessToken = response.data.accessToken;
         const newRefreshToken = response.data.refreshToken;
 
-        localStorage.setItem('token', newAccessToken);
+        localStorage.setItem('accessToken', newAccessToken);
         localStorage.setItem('refreshToken', newRefreshToken);
 
         processQueue(newAccessToken);
