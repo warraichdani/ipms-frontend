@@ -22,7 +22,7 @@ export default function ReportsDashboard() {
         try {
           const response = await apiClient.post(
             `/reports/yoy-allocation/export?format=${format}`,
-            {},
+            {...filters, exportAll: true},
             { responseType: "blob" }
           );
           exportfile(response, format);
@@ -44,8 +44,6 @@ const handlePerformanceExport  = async (format: "csv" | "pdf" | "json") => {
           from: filters.from,
           to: filters.to,
           investmentTypes: filters.investmentTypes,
-          page: 1,
-          pageSize: 10,
           exportAll: true,
         },
         { responseType: "blob" }
@@ -59,7 +57,16 @@ const handlePerformanceExport  = async (format: "csv" | "pdf" | "json") => {
   const handleTopPerformingExport = async (format: "csv" | "pdf" | "json") => {
     const response = await apiClient.post(
       `/reports/top-performing-investments/export?format=${format}`,
-      filters,
+      {...filters, exportAll: true},
+      { responseType: "blob" }
+    );
+    exportfile(response, format);
+  };
+
+  const handleTransactionExport = async (format: "csv" | "pdf" | "json") => {
+    const response = await apiClient.post(
+      `/reports/transactions/export?format=${format}`,
+      {...filters, exportAll: true},
       { responseType: "blob" }
     );
     exportfile(response, format);
@@ -83,6 +90,8 @@ const exportfile =(response: any, format: "csv" | "pdf" | "json") =>
       ? handleYoYExport
       : activeReport === "TopPerformingInvestments"
       ? handleTopPerformingExport
+      : activeReport === "TransactionHistoryReport"
+      ? handleTransactionExport
       : undefined;
 
     return (

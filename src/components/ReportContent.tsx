@@ -2,6 +2,7 @@ import InvestmentDistributionReport from "../pages/Reports/InvestmentDistributio
 import MonthlyPerformanceTrendReport from "../pages/Reports/MonthlyPerformanceTrendReport";
 import PerformanceSummaryReport from "../pages/Reports/PerformanceSummaryReport";
 import TopPerformingInvestmentsReport from "../pages/Reports/TopPerformingInvestmentsReport";
+import TransactionHistoryReport from "../pages/Reports/TransactionsHistoryReport";
 import YearOverYearComparisonReport from "../pages/Reports/YearOverYearComparisonReport";
 
 export default function ReportContent({ activeReport, filters }: { activeReport: string; filters: any }) {
@@ -11,7 +12,7 @@ export default function ReportContent({ activeReport, filters }: { activeReport:
     case "InvestmentDistributionReport":
       return <InvestmentDistributionReport filters={filters}/>;
     case "TransactionHistoryReport":
-      return <div>Report coming soon</div>;
+      return <TransactionHistoryReport filters={filters} />;
     case "MonthlyPerformanceTrend":
       return <MonthlyPerformanceTrendReport filters={filters} />;
     case "YearOverYearComparison":
