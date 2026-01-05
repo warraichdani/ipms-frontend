@@ -27,7 +27,7 @@ export default function UserDashboard() {
         </div>
 
         {/* Right side: Recent Transactions */}
-        <div className="col-span-4 h-[280px]">
+        <div className="col-span-4 h-[285px]">
           <TransactionTable
             transactions={data?.items ?? []}
             isLoading={isLoading}

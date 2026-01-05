@@ -17,7 +17,7 @@ export default function AssetAllocationChart({ assetData: data, isAssetLoading: 
 
   if (isLoading) {
     return (
-      <Card className="h-[400px] flex items-center justify-center">
+      <Card className="h-[300px] flex items-center justify-center">
         <Spinner size="lg" />
       </Card>
     );
@@ -25,7 +25,7 @@ export default function AssetAllocationChart({ assetData: data, isAssetLoading: 
 
   if (!data || data.length === 0) {
     return (
-      <Card className="h-[400px] flex items-center justify-center">
+      <Card className="h-[300px] flex items-center justify-center">
         <h2 className="text-xl font-bold text-brand-700 mb-4">Asset Allocation</h2>
         <p className="text-gray-500">No allocation data available</p>
       </Card>
@@ -76,7 +76,7 @@ export default function AssetAllocationChart({ assetData: data, isAssetLoading: 
   };
 
   return (
-    <Card className="h-[400px] flex flex-col items-center justify-center">
+    <Card className="h-[320px] flex flex-col p-4 items-center justify-center">
       <h2 className="text-xl font-bold text-brand-700 mb-4">Asset Allocation</h2>
       <Doughnut data={chartData} options={options} />
     </Card>
